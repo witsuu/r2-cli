@@ -3,8 +3,8 @@
 set -e
 
 # === Config ===
-GITHUB_USER="${GITHUB_USER:-witsuu}"  # <-- Ganti 'username' dengan GitHub username kamu atau bisa override pakai ENV
-REPO_NAME="${REPO_NAME:-r2-cli}"
+GITHUB_USER="witsuu"  # <-- Ganti 'username' dengan GitHub username kamu atau bisa override pakai ENV
+REPO_NAME="r2-cli"
 INSTALL_DIR="/usr/local/bin"
 BINARY_NAME="r2-cli"
 
