@@ -52,6 +52,9 @@ download_and_install() {
   local FILE_NAME="$BINARY_NAME-$PLATFORM"
   [[ "$PLATFORM" == *"windows"* ]] && FILE_NAME="$FILE_NAME.exe"
 
+  echo "This version: $VERSION"
+  echo "This Filename: $FILE_NAME"
+
   local DOWNLOAD_URL="https://github.com/$GITHUB_USER/$REPO_NAME/releases/download/$VERSION/$FILE_NAME"
 
   echo "⬇️ Downloading from: $DOWNLOAD_URL ..."
