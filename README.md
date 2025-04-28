@@ -3,6 +3,8 @@
 [![Build Status](https://img.shields.io/github/actions/workflow/status/witsuu/r2-cli/release.yml?branch=main)](https://github.com/witsuu/r2-cli/actions)
 [![Latest Release](https://img.shields.io/github/v/release/witsuu/r2-cli)](https://github.com/witsuu/r2-cli/releases)
 [![License](https://img.shields.io/github/license/witsuu/r2-cli)](LICENSE)
+![Platform Support](https://img.shields.io/badge/platform-linux%20%7C%20windows%20%7C%20macos-brightgreen)
+![Rust Version](https://img.shields.io/badge/rust-1.65%2B-orange)
 
 **r2cli** adalah **Command Line Interface (CLI)** sederhana untuk mengelola file di **Cloudflare R2 Storage**.  
 Mudah digunakan untuk upload, download, konfigurasi akun, dan update binary dari GitHub Release terbaru.
