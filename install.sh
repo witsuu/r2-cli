@@ -90,8 +90,8 @@ download_and_install() {
 main() {
   echo "🔍 Fetching latest release..."
   detect_platform
-  echo "📦 Latest version: $VERSION"
   VERSION=$(get_latest_version)
+  echo "📦 Latest version: $VERSION"
   download_and_install "$VERSION"
 }
 
