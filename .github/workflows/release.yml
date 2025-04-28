@@ -43,7 +43,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            target/${{ matrix.target }}/release/r2cli${{ matrix.target == 'x86_64-pc-windows-gnu' && '.exe' || '' }}
+            target/${{ matrix.target }}/release/r2-cli${{ matrix.target == 'x86_64-pc-windows-gnu' && '.exe' || '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -73,6 +73,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            target/${{ matrix.target }}/release/r2cli
+            target/${{ matrix.target }}/release/r2-cli
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
