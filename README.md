@@ -1,6 +1,6 @@
 # r2-cli
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/witsuu/r2-cli/release.yml?branch=main)](https://github.com/witsuu/r2-cli/actions)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/witsuu/r2-cli/release.yml)](https://github.com/witsuu/r2-cli/actions)
 [![Latest Release](https://img.shields.io/github/v/release/witsuu/r2-cli)](https://github.com/witsuu/r2-cli/releases)
 [![License](https://img.shields.io/github/license/witsuu/r2-cli)](LICENSE)
 ![Platform Support](https://img.shields.io/badge/platform-linux%20%7C%20windows%20%7C%20macos-brightgreen)
