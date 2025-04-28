@@ -4,9 +4,9 @@ set -e
 
 # === Config ===
 GITHUB_USER="${GITHUB_USER:-username}"  # <-- Ganti 'username' dengan GitHub username kamu atau bisa override pakai ENV
-REPO_NAME="${REPO_NAME:-r2cli}"
+REPO_NAME="${REPO_NAME:-r2-cli}"
 INSTALL_DIR="/usr/local/bin"
-BINARY_NAME="r2cli"
+BINARY_NAME="r2-cli"
 
 # === Functions ===
 
