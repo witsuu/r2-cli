@@ -11,13 +11,11 @@ BINARY_NAME="r2-cli"
 # === Functions ===
 
 get_latest_version() {
-  echo "🔍 Fetching latest release..."
   VERSION=$(curl --silent --fail "https://api.github.com/repos/$GITHUB_USER/$REPO_NAME/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
   if [ -z "$VERSION" ]; then
     echo "❌ Failed to fetch the latest version."
     exit 1
   fi
-  echo "📦 Latest version: $VERSION"
   echo "$VERSION"
 }
 
@@ -90,7 +88,9 @@ download_and_install() {
 }
 
 main() {
+  echo "🔍 Fetching latest release..."
   detect_platform
+  echo "📦 Latest version: $VERSION"
   VERSION=$(get_latest_version)
   download_and_install "$VERSION"
 }
