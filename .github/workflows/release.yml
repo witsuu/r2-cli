@@ -3,18 +3,54 @@ name: Release
 on:
   push:
     tags:
-      - "v*" # Hanya trigger kalau push tag mulai v (v0.1.0, v1.2.3, dst)
+      - "v*"
 
 jobs:
-  build:
+  build-linux-windows:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         target:
-          - x86_64-unknown-linux-musl # Linux
-          - x86_64-pc-windows-gnu # Windows
-          - aarch64-apple-darwin # MacOS (ARM, M1/M2)
-          - x86_64-apple-darwin # MacOS (Intel)
+          - x86_64-unknown-linux-musl
+          - x86_64-pc-windows-gnu
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+          target: ${{ matrix.target }}
+
+      - name: Install musl for Linux musl builds
+        if: matrix.target == 'x86_64-unknown-linux-musl'
+        run: sudo apt-get update && sudo apt-get install -y musl-tools
+
+      - name: Install mingw for Windows builds
+        if: matrix.target == 'x86_64-pc-windows-gnu'
+        run: sudo apt-get update && sudo apt-get install -y mingw-w64
+
+      - name: Build binary
+        run: cargo build --release --target ${{ matrix.target }}
+
+      - name: Upload Artifact
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            target/${{ matrix.target }}/release/r2cli${{ matrix.target == 'x86_64-pc-windows-gnu' && '.exe' || '' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-macos:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        target:
+          - x86_64-apple-darwin
+          - aarch64-apple-darwin
 
     steps:
       - name: Checkout
@@ -28,13 +64,12 @@ jobs:
           target: ${{ matrix.target }}
 
       - name: Build binary
-        run: |
-          cargo build --release --target ${{ matrix.target }}
+        run: cargo build --release --target ${{ matrix.target }}
 
       - name: Upload Artifact
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            target/${{ matrix.target }}/release/r2cli${{ matrix.target == 'x86_64-pc-windows-gnu' && '.exe' || '' }}
+            target/${{ matrix.target }}/release/r2cli
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
