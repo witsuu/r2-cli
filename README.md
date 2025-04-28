@@ -1,4 +1,4 @@
-# r2cli
+# r2-cli
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/witsuu/r2-cli/release.yml?branch=main)](https://github.com/witsuu/r2-cli/actions)
 [![Latest Release](https://img.shields.io/github/v/release/witsuu/r2-cli)](https://github.com/witsuu/r2-cli/releases)
@@ -6,7 +6,7 @@
 ![Platform Support](https://img.shields.io/badge/platform-linux%20%7C%20windows%20%7C%20macos-brightgreen)
 ![Rust Version](https://img.shields.io/badge/rust-1.65%2B-orange)
 
-**r2cli** adalah **Command Line Interface (CLI)** sederhana untuk mengelola file di **Cloudflare R2 Storage**.  
+**r2-cli** adalah **Command Line Interface (CLI)** sederhana untuk mengelola file di **Cloudflare R2 Storage**.  
 Mudah digunakan untuk upload, download, konfigurasi akun, dan update binary dari GitHub Release terbaru.
 
 ---
@@ -38,7 +38,7 @@ Mudah digunakan untuk upload, download, konfigurasi akun, dan update binary dari
 ### Linux / macOS
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/witsuu/r2cli/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/witsuu/r2-cli/main/install.sh | bash
 ```
 
 > Ganti `witsuu` dengan GitHub username kamu!
@@ -46,18 +46,18 @@ curl -fsSL https://raw.githubusercontent.com/witsuu/r2cli/main/install.sh | bash
 Atau manual:
 
 ```bash
-git clone https://github.com/witsuu/r2cli.git
-cd r2cli
+git clone https://github.com/witsuu/r2-cli.git
+cd r2-cli
 bash install.sh
 ```
 
 ### Windows (Git Bash / WSL)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/witsuu/r2cli/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/witsuu/r2-cli/main/install.sh | bash
 ```
 
-> File binary akan diinstall ke `%USERPROFILE%\bin\r2cli.exe`.  
+> File binary akan diinstall ke `%USERPROFILE%\bin\r2-cli.exe`.  
 > PATH akan otomatis diupdate jika perlu.
 
 ---
@@ -76,7 +76,7 @@ bash uninstall.sh
 bash uninstall.sh
 ```
 
-Setelah uninstall, binary `r2cli` akan dihapus.  
+Setelah uninstall, binary `r2-cli` akan dihapus.  
 Kalau install di Windows, PATH akan dibersihkan otomatis jika perlu.
 
 ---
@@ -86,7 +86,7 @@ Kalau install di Windows, PATH akan dibersihkan otomatis jika perlu.
 ### Konfigurasi Akun R2
 
 ```bash
-r2cli configure
+r2-cli configure
 ```
 
 Masukkan:
@@ -98,26 +98,26 @@ Masukkan:
 ### Upload File ke R2
 
 ```bash
-r2cli upload --bucket my-bucket --file path/to/local/file.txt --key remote/path/file.txt
+r2-cli upload --bucket my-bucket --file path/to/local/file.txt --key remote/path/file.txt
 ```
 
 ### Download File dari R2
 
 ```bash
-r2cli download --bucket my-bucket --key remote/path/file.txt --output path/to/save/file.txt
+r2-cli download --bucket my-bucket --key remote/path/file.txt --output path/to/save/file.txt
 ```
 
-### Update r2cli ke Versi Terbaru
+### Update r2-cli ke Versi Terbaru
 
 ```bash
-r2cli update
+r2-cli update
 ```
 
 ---
 
 ## 📸 Screenshot
 
-![r2cli Screenshot](https://user-images.githubusercontent.com/your-github-id/your-image-id.png)
+![r2-cli Screenshot](https://user-images.githubusercontent.com/your-github-id/your-image-id.png)
 
 > Kamu bisa ganti URL gambar di atas setelah upload screenshot di GitHub issues atau image hosting.
 
@@ -127,7 +127,7 @@ r2cli update
 
 Lihat semua versi yang tersedia di:
 
-👉 [GitHub Releases](https://github.com/witsuu/r2cli/releases)
+👉 [GitHub Releases](https://github.com/witsuu/r2-cli/releases)
 
 ---
 
