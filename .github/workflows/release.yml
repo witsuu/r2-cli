@@ -39,11 +39,21 @@ jobs:
       - name: Build binary
         run: cargo build --release --target ${{ matrix.target }}
 
+      - name: Rename binary with target
+        run: |
+          BINARY_NAME="r2-cli"
+          FILE_NAME="r2-cli-${{ matrix.target }}"
+          EXTENSION=""
+          if [[ "${{ matrix.target }}" == "x86_64-pc-windows-gnu" ]]; then
+            EXTENSION=".exe"
+          fi
+          mv target/${{ matrix.target }}/release/$BINARY_NAME$EXTENSION target/${{ matrix.target }}/release/$FILE_NAME$EXTENSION
+
       - name: Upload Artifact
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            target/${{ matrix.target }}/release/r2-cli${{ matrix.target == 'x86_64-pc-windows-gnu' && '.exe' || '' }}
+            target/${{ matrix.target }}/release/r2-cli-${{ matrix.target }}${{ matrix.target == 'x86_64-pc-windows-gnu' && '.exe' || '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -69,10 +79,16 @@ jobs:
       - name: Build binary
         run: cargo build --release --target ${{ matrix.target }}
 
+      - name: Rename binary with target
+        run: |
+          BINARY_NAME="r2-cli"
+          FILE_NAME="r2-cli-${{ matrix.target }}"
+          mv target/${{ matrix.target }}/release/$BINARY_NAME target/${{ matrix.target }}/release/$FILE_NAME
+
       - name: Upload Artifact
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            target/${{ matrix.target }}/release/r2-cli
+            target/${{ matrix.target }}/release/r2-cli-${{ matrix.target }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
