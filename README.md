@@ -41,8 +41,6 @@ Mudah digunakan untuk upload, download, konfigurasi akun, dan update binary dari
 curl -fsSL https://raw.githubusercontent.com/witsuu/r2-cli/main/install.sh | bash
 ```
 
-> Ganti `witsuu` dengan GitHub username kamu!
-
 Atau manual:
 
 ```bash
