@@ -41,8 +41,6 @@ Mudah digunakan untuk upload, download, konfigurasi akun, dan update binary dari
 curl -fsSL https://raw.githubusercontent.com/witsuu/r2-cli/main/install.sh | bash
 ```
 
-> Ganti `witsuu` dengan GitHub username kamu!
-
 Atau manual:
 
 ```bash
@@ -112,14 +110,6 @@ r2-cli download --bucket my-bucket --key remote/path/file.txt --output path/to/s
 ```bash
 r2-cli update
 ```
-
----
-
-## 📸 Screenshot
-
-![r2-cli Screenshot](https://user-images.githubusercontent.com/your-github-id/your-image-id.png)
-
-> Kamu bisa ganti URL gambar di atas setelah upload screenshot di GitHub issues atau image hosting.
 
 ---
 

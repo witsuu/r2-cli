@@ -1,14 +1,13 @@
-use aws_sdk_s3::config::Credentials;
 use aws_sdk_s3::primitives::ByteStream;
 use aws_sdk_s3::Client;
+use aws_sdk_s3::{config::Credentials, types::Bucket};
 use aws_types::region::Region;
 // use futures_util::StreamExt;
+use crate::config::R2Config;
 use futures_util::stream::StreamExt;
 use indicatif::{ProgressBar, ProgressStyle};
 use tokio::io::AsyncWriteExt;
 use tokio_util::io::ReaderStream;
-
-use crate::config::R2Config;
 
 /// R2Client struct untuk mengelola operasi Cloudflare R2
 pub struct R2Client {
@@ -112,5 +111,15 @@ impl R2Client {
 
         println!("✅ Uploaded '{}' as '{}'", file_path, key);
         Ok(())
+    }
+
+    pub async fn list_buckets(&self) -> Result<Vec<Bucket>, Box<dyn std::error::Error>> {
+        // let cfg = R2Config::load()?;
+
+        let response_bucket = self.client.list_buckets().send().await?;
+
+        let buckets = response_bucket.buckets().to_vec();
+
+        Ok(buckets)
     }
 }

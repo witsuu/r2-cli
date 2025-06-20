@@ -38,6 +38,7 @@ enum Commands {
         #[arg(short, long)]
         key: String,
     },
+    ListBuckets,
     Update,
     Configure,
 }
@@ -65,6 +66,24 @@ async fn main() -> Result<(), Box<dyn Error>> {
         }
         Commands::Configure => {
             configure_r2cli().await?;
+        }
+        Commands::ListBuckets => {
+            let r2 = R2Client::new("dummy-bucket".to_string()).await?;
+            match r2.list_buckets().await {
+                Ok(buckets) => {
+                    if buckets.is_empty() {
+                        println!("No buckets found.");
+                    } else {
+                        println!("📦 Available Buckets:");
+                        for bucket in buckets {
+                            println!("{:?}", bucket.name.unwrap());
+                        }
+                    }
+                }
+                Err(e) => {
+                    eprintln!("Error fetching buckets: {}", e);
+                }
+            }
         }
     }
 
