@@ -2,6 +2,7 @@ use aws_sdk_s3::primitives::ByteStream;
 use aws_sdk_s3::Client;
 use aws_sdk_s3::{config::Credentials, types::Bucket};
 use aws_types::region::Region;
+use mime_guess::from_path;
 // use futures_util::StreamExt;
 use crate::config::R2Config;
 use futures_util::stream::StreamExt;
@@ -101,11 +102,18 @@ impl R2Client {
     ) -> Result<(), Box<dyn std::error::Error>> {
         let data = tokio::fs::read(file_path).await?;
 
+        let mime_type = {
+            let guess = from_path(file_path);
+            let mime = guess.first_or_octet_stream();
+            mime.essence_str().to_string()
+        };
+
         self.client
             .put_object()
             .bucket(&self.bucket)
             .key(key)
             .body(ByteStream::from(data))
+            .content_type(mime_type)
             .send()
             .await?;
 

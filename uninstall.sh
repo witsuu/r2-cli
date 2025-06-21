@@ -3,7 +3,7 @@
 set -e
 
 # Config
-BINARY_NAME="r2cli"
+BINARY_NAME="r2-cli"
 INSTALL_DIR="/usr/local/bin"
 INSTALL_DIR_WIN="$USERPROFILE/bin"
 
@@ -31,15 +31,15 @@ detect_platform() {
 uninstall_linux_macos() {
   if [ -f "$INSTALL_DIR/$BINARY_NAME" ]; then
     echo "⚠️ Found $INSTALL_DIR/$BINARY_NAME"
-    read -p "❓ Are you sure you want to uninstall r2cli? [y/N]: " confirm
+    read -p "❓ Are you sure you want to uninstall r2-cli? [y/N]: " confirm
     if [[ "$confirm" =~ ^[Yy]$ ]]; then
       sudo rm "$INSTALL_DIR/$BINARY_NAME"
-      echo "✅ r2cli successfully uninstalled from $INSTALL_DIR"
+      echo "✅ r2-cli successfully uninstalled from $INSTALL_DIR"
     else
       echo "❌ Uninstallation cancelled."
     fi
   else
-    echo "❌ r2cli not found at $INSTALL_DIR"
+    echo "❌ r2-cli not found at $INSTALL_DIR"
     exit 1
   fi
 }
@@ -47,10 +47,10 @@ uninstall_linux_macos() {
 uninstall_windows() {
   if [ -f "$INSTALL_DIR_WIN/$BINARY_NAME.exe" ]; then
     echo "⚠️ Found $INSTALL_DIR_WIN/$BINARY_NAME.exe"
-    read -p "❓ Are you sure you want to uninstall r2cli? [y/N]: " confirm
+    read -p "❓ Are you sure you want to uninstall r2-cli? [y/N]: " confirm
     if [[ "$confirm" =~ ^[Yy]$ ]]; then
       rm "$INSTALL_DIR_WIN/$BINARY_NAME.exe"
-      echo "✅ r2cli.exe successfully uninstalled from $INSTALL_DIR_WIN"
+      echo "✅ r2-cli.exe successfully uninstalled from $INSTALL_DIR_WIN"
 
       # Check if folder is empty
       if [ -z "$(ls -A "$INSTALL_DIR_WIN")" ]; then
@@ -71,7 +71,7 @@ uninstall_windows() {
       echo "❌ Uninstallation cancelled."
     fi
   else
-    echo "❌ r2cli.exe not found at $INSTALL_DIR_WIN"
+    echo "❌ r2-cli.exe not found at $INSTALL_DIR_WIN"
     exit 1
   fi
 }

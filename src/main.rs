@@ -125,7 +125,7 @@ async fn configure_r2cli() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 async fn r2cli_update() -> Result<(), Box<dyn std::error::Error>> {
-    let github_user = "username"; // <-- ganti ini
+    let github_user = "witsuu";
     let repo_name = "r2cli"; // <-- ganti ini
     let url = format!(
         "https://api.github.com/repos/{}/{}/releases/latest",
