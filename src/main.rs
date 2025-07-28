@@ -39,6 +39,12 @@ enum Commands {
         key: String,
     },
     ListBuckets,
+    ListObjects {
+        #[arg(short, long)]
+        bucket: String,
+        #[arg(short, long)]
+        key: String,
+    },
     Update,
     Configure,
 }
@@ -77,6 +83,24 @@ async fn main() -> Result<(), Box<dyn Error>> {
                         println!("📦 Available Buckets:");
                         for bucket in buckets {
                             println!("{:?}", bucket.name.unwrap());
+                        }
+                    }
+                }
+                Err(e) => {
+                    eprintln!("Error fetching buckets: {}", e);
+                }
+            }
+        }
+        Commands::ListObjects { bucket, key } => {
+            let r2 = R2Client::new(bucket).await?;
+            match r2.list_objects(key).await {
+                Ok(objects) => {
+                    if objects.is_empty() {
+                        println!("No Object Found");
+                    } else {
+                        println!("📦 Available Objects:");
+                        for object in objects {
+                            println!("{:?}", object.key().unwrap());
                         }
                     }
                 }

@@ -1,6 +1,6 @@
 .PHONY: build install uninstall clean
 
-BINARY = r2cli
+BINARY = r2-cli
 
 build:
 	cargo build --release

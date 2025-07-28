@@ -1,6 +1,6 @@
 use aws_sdk_s3::primitives::ByteStream;
 use aws_sdk_s3::Client;
-use aws_sdk_s3::{config::Credentials, types::Bucket};
+use aws_sdk_s3::{config::Credentials, types::Bucket, types::Object};
 use aws_types::region::Region;
 use mime_guess::from_path;
 // use futures_util::StreamExt;
@@ -129,5 +129,22 @@ impl R2Client {
         let buckets = response_bucket.buckets().to_vec();
 
         Ok(buckets)
+    }
+
+    pub async fn list_objects(
+        &self,
+        key: String,
+    ) -> Result<Vec<Object>, Box<dyn std::error::Error>> {
+        let response_objects = self
+            .client
+            .list_objects_v2()
+            .bucket(&self.bucket)
+            .prefix(key)
+            .send()
+            .await?;
+
+        let objects = response_objects.contents().to_vec();
+
+        Ok(objects)
     }
 }
